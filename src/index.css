@@ -21,6 +21,10 @@ body {
   min-height: 100vh;
 }
 
+.highlight-row {
+  background-color: #f0f8ff;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

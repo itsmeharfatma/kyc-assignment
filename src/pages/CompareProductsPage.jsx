@@ -15,7 +15,10 @@ const CompareProductsPage = ({ selectedProducts, setSelectedProducts }) => {
   };
 
   const handleAddProduct = (product) => {
-    if (selectedProducts.length < 4 && !selectedProducts.includes(product)) {
+    if (
+      selectedProducts.length < 4 &&
+      !selectedProducts.some((p) => p.id === product.id)
+    ) {
       setSelectedProducts([...selectedProducts, product]);
     }
   };

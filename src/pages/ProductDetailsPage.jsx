@@ -15,8 +15,14 @@ const ProductDetailsPage = ({ selectedProducts, setSelectedProducts }) => {
   }, []);
 
   const handleCompare = (product) => {
-    setSelectedProducts([...selectedProducts, product]);
+    if (!selectedProducts.some((p) => p.id === product.id)) {
+      setSelectedProducts([...selectedProducts, product]);
+    }
     navigate("/compare");
+  };
+
+  const isProductCompared = (product) => {
+    return selectedProducts.some((p) => p.id === product.id);
   };
 
   const columns = [
@@ -61,7 +67,7 @@ const ProductDetailsPage = ({ selectedProducts, setSelectedProducts }) => {
       key: "compare",
       render: (text, record) => (
         <Button
-          disabled={selectedProducts.includes(record)}
+          disabled={isProductCompared(record)}
           onClick={() => handleCompare(record)}
         >
           Compare
@@ -77,6 +83,9 @@ const ProductDetailsPage = ({ selectedProducts, setSelectedProducts }) => {
       columns={columns}
       pagination={{ pageSize: 5 }}
       rowKey="id"
+      rowClassName={(record) =>
+        isProductCompared(record) ? "highlight-row" : ""
+      }
     />
   );
 };

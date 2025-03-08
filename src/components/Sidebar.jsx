@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { Layout, Menu, Avatar } from "antd";
+import React from "react";
+import { Layout, Menu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 const { Sider } = Layout;
 
 const Sidebar = () => {
   const location = useLocation();
-  const [selectedKey, setSelectedKey] = useState(
-    location.pathname === "/" ? "1" : "2"
-  );
+
+  const selectedKey = location.pathname === "/" ? "1" : "2";
 
   return (
     <Sider width={200} style={{ padding: "10px" }}>
@@ -29,9 +28,7 @@ const Sidebar = () => {
             fontWeight: "bold",
           }}
         >
-          <Link to="/" onClick={() => setSelectedKey("1")}>
-            Product Details
-          </Link>
+          <Link to="/">Product Details</Link>
         </Menu.Item>
         <Menu.Item
           key="2"
@@ -41,9 +38,7 @@ const Sidebar = () => {
             fontWeight: "bold",
           }}
         >
-          <Link to="/compare" onClick={() => setSelectedKey("2")}>
-            Compare Products
-          </Link>
+          <Link to="/compare">Compare Products</Link>
         </Menu.Item>
       </Menu>
     </Sider>
